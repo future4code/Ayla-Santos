@@ -1,0 +1,27 @@
+p{
+    background-color:salmon;
+    color:black;
+}
+
+div{
+    background-color:salmon;
+    border:1px solid black;
+}
+
+
+body{
+    color:black;
+    background-color:salmon;
+    margin-left:30xp;
+    margin-right:30xp;
+    text-align: center;
+
+}
+  .container{
+      margin-top:50px;
+      margin-left:50px;
+      margin-bottom:50px;
+      margin-right:50px;
+      max-width:auto;
+      min-height:100px;
+  }
