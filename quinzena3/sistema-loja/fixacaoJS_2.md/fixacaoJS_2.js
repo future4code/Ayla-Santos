@@ -1,0 +1,7 @@
+```function calcularPreçoTotal (quantidade){
+    const quantidade= 2  
+    const valorUnitario= 1,30 
+
+    const multiplicaçao = quantidade*valorUnitario
+
+}```
