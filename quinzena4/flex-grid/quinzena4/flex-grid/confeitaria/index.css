@@ -1,0 +1,16 @@
+h2{
+    background-color: mediumvioletred;
+    color:black;
+}
+.container{
+    background-color:#f2d0e0;
+    color:black;
+
+}
+
+.container {
+    padding:0px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+}
