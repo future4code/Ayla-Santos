@@ -1,42 +1,42 @@
 // Exxercício de escrita no código 
 
 // Numero1 
-// const usuario = Number(prompt("Digite a sua idade"))
-//   console.log(usuario)
+const usuario = Number(prompt("Digite a sua idade"))
+  console.log(usuario)
 
-// if(usuario >= 18){
-//     console.log("Você pode dirigir")
-// } else if (usuario < 18){
-//     console.log("Você não pode dirigir")
-// }
+if(usuario >= 18){
+    console.log("Você pode dirigir")
+} else if (usuario < 18){
+    console.log("Você não pode dirigir")
+}
  
     
     // Numero 2 
 
-    // const turnoDoUsuario = prompt("Digite a letra correspondente do seu turno")
+    const turnoDoUsuario = prompt("Digite a letra correspondente do seu turno")
 
-    // if (turnoDoUsuario === "M"){
-    //     console.log("Bom Dia!")
-    // }else if (turnoDoUsuario === "V"){
-    //     console.log("Boa Tarde!")
-    // }else if(turnoDoUsuario === "N"){
-    //     console.log("Boa Noite!")
-    // }
+    if (turnoDoUsuario === "M"){
+        console.log("Bom Dia!")
+    }else if (turnoDoUsuario === "V"){
+        console.log("Boa Tarde!")
+    }else if(turnoDoUsuario === "N"){
+        console.log("Boa Noite!")
+    }
 
 
     // Numero 3
-    // const turnoDoUsuario1 = prompt("Digite a letra inicial correspondente ao seu turno ")
+    const turnoDoUsuario1 = prompt("Digite a letra inicial correspondente ao seu turno ")
 
-    // switch(turnoDoUsuario1){
-    //     case 'M':
-    //     console.log("Bom Dia!")
-    //     break 
-    //     case 'V':
-    //         console.log("Boa Tarde!")
-    //         break
-    //     case 'N':
-    //         console.log("Boa Noite!")
-    // }
+    switch(turnoDoUsuario1){
+        case 'M':
+        console.log("Bom Dia!")
+        break 
+        case 'V':
+            console.log("Boa Tarde!")
+            break
+        case 'N':
+            console.log("Boa Noite!")
+    }
 
 
 //   Numero 4 
