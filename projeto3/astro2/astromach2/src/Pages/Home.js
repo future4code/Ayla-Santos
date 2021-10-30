@@ -1,78 +1,74 @@
 import React,{useState, useEffect} from "react"
 import axios from "axios"
-import pages from "./Matches"
+import { BASE_URL } from "../Constants/baseUrl";
+import{
+PageContainer,
+PageContainerMatches,
+PersonContainer,
+PersonImage,
+PersonName,
+PersonBio,
+ChooseButton,
 
 
+}from "./styled"
 
- const Home = (props) =>{
+ const Home = () =>{
+    const [mostraPerfil, setMostraPerfil]=useState([])
 
-     const [mostraPerfil, setMostraPerfil]= useState({})
-     const [personList, setPersonList]=useState([])
+const getMostraPerfil = () =>{
+    const URL = `${BASE_URL}/person`
 
-
-     useEffect(()=>{
-       getPersonList()
-       getMostraPerfil ()
-     },[])
-     
-
-     const getPersonList=()=>{
-        axios 
-        .get (`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/choose-person`)
-         
-
-        .then((res)=>{
-         setPersonList(res.data.result)
+    axios.get(URL )
+        .then((res) => {
+            setMostraPerfil(res.data.profile)
         })
-        .catch((err)=>{
-         console.log(err)
+        .catch((err) => {
+            console.log(err.response)
+    
         })
-
-       const personList=(id)=>{
-           const url =(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/choose-person`)
-
-          const body=()=>{
-            
-          }
-
-          axios 
-          .post (url,body,{
-              headers:{
-               authorization:"Ayla-santos-banu"
-              }
-          } )
-        }
-     }
-
-     const  getMostraPerfil=()=>{
-        axios 
-        .get (
-            `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/person`
-        )
-    
-    .then((response)=>{
-      setMostraPerfil(response.data.profile)
-    })
-     .catch ((err)=>{
-      console.log(err)
-     })
-    
-     }
-      
-
-
-
-
-return (
-    <div>
-    <h2>Astromach</h2>
-    <span>{mostraPerfil.name} </span> 
-    <img src={mostraPerfil.photo} alt={mostraPerfil.name}/>
-    <span>{mostraPerfil.bio} </span> 
-        <button></button>
-        </div>
-    )
+        
 }
+useEffect(() => {
+    document.title="Astromatch"
+   getMostraPerfil()
+}, [])
 
-export default Home;
+     const personLike=(boolean)=>{
+        const URL = `${BASE_URL}/choose-person`
+        const body = {
 
+            id:(mostraPerfil.id),
+            choice:(boolean) 
+        }
+        axios.post(URL, body)
+            .then((res) => {
+               getMostraPerfil()
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+     }
+    
+
+
+   return (
+          <PageContainer>
+            <PersonContainer>
+                <PersonImage src={mostraPerfil.photo} />
+                <PersonName>{mostraPerfil.name}, {mostraPerfil.age}</PersonName>
+                <PersonBio>{mostraPerfil.bio}</PersonBio>
+                <div>
+                <ChooseButton onClick={()=> personLike (false)}>❌</ChooseButton>
+                <ChooseButton onClick={()=> personLike (true)}>💚</ChooseButton>
+        
+                </div>
+        </PersonContainer>
+       
+          </PageContainer>
+         
+       
+   )   
+ }
+
+ export default Home;

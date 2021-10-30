@@ -1,37 +1,53 @@
 import React,{useState, useEffect} from "react"
 import axios from "axios"
+import {BASE_URL} from "../Constants/baseUrl"
+import {
+PageContainerMatches,
+ContainerListaMatches,
+CardImg,
+} from "./styled"
 
 
- export const Matches =(props)=>{
-    const[mostrarMatches, setMostrarMatches]=useState()
+ export const Matches =()=>{
+    const[mostrarMatches, setMostrarMatches] = useState([])
     
 
-  useEffect(()=>{
-    axios 
-    .get (
-       `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/matches`
-    )
-    .then ((response)=>{
-      setMostrarMatches(response.data.results)
-    })
-    . catch((err)=>{
-      console.log(err)
-    })
+    const getMostrarMatches = () => {
+      const URL = `${BASE_URL}/matches`
 
-  },[])
+      axios.get(URL)
+          .then((res) => {
+              setMostrarMatches(res.data.matches)
+              
+          })
+          .catch((err) => {
+              console.log(err.response)
+          })
+        }
 
- 
+  useEffect(() => {
+      getMostrarMatches()
+  }, [])
 
 
     return(
-       <div>
-       <h2>Matches</h2>
-       <span>{mostrarMatches.id} </span> 
-       <img src={mostrarMatches.photo} alt={mostrarMatches.name}/>
-       <span>{mostrarMatches.bio} </span> 
-       <span>{mostrarMatches.age}</span>
-       <button></button>
-       </div>
+           <PageContainerMatches>
+             <ContainerListaMatches>
+                {mostrarMatches.map((m)=>{
+                  return(
+                    <CardImg>
+                      <img src={m.photo} alt="imagemMatches"/>
+                      <p>{m.name}</p>
+                      
+                    </CardImg>
+                  )
+                })}
+                
+            </ContainerListaMatches>
+           </PageContainerMatches>
+          
+      
+       
     )
     
     

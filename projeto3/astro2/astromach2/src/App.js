@@ -1,8 +1,8 @@
 import React, {useState,useEffect} from "react";
 import axios from "axios"
-import "./Pages/Home";
-import "./Pages/Matches";
-
+import Home from "./Pages/Home";
+import  Matches from "./Pages/Matches";
+import { BASE_URL } from "./Constants/baseUrl";
 
 const App=()=>{
   const [pageName, setPageName]= useState("Home")
@@ -25,22 +25,34 @@ const irPaginaMatches =()=>{
 
   const getPagina =()=>{
     switch (pageName){
-      case "home":
-        return <home/>
-       case "matches":
-         return <matches/>
+      case "Home":
+        return <Home/>
+       case "Matches":
+         return <Matches/>
       default:
-        return <home/>
+        return <Home/>
     }
   };
+ 
+  const clearMatches = () => {
+    const URL = `${BASE_URL}/clear`
 
+    axios.put(URL)
+      .then(() => {
+        alert("limpeza feita")
+        setPageName("home")
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+  }
 
   return (
     <div>
       {getPagina()}
-      <h2>Astromatch</h2>
-      <button onClick={changePage}>{pageName=== "Home" ? "Ir para Matches" : "Ir para Home"}</button>
-      <button>Limpar Matches</button>
+      <h1>Astromatch</h1>
+      <button onClick={changePage}>{pageName === "home" ? "Ir para Matches" : "Ir para Home"}</button>
+      <button onClick={clearMatches}>Limpar Matches</button>
     </div>
   )
 
