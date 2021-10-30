@@ -88,7 +88,7 @@ export const PageContainerMatches = styled.div `
     width: 100vw;
     display: flex;
     justify-content: center;
-    height: 97vh;
+    height: 100vh;
     background-color:#473c61;
 
 `;
