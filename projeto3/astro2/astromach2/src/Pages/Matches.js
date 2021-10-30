@@ -5,6 +5,7 @@ import {
 PageContainerMatches,
 ContainerListaMatches,
 CardImg,
+Avatar,
 } from "./styled"
 
 
@@ -36,9 +37,9 @@ CardImg,
                 {mostrarMatches.map((m)=>{
                   return(
                     <CardImg>
-                      <img src={m.photo} alt="imagemMatches"/>
-                      <p>{m.name}</p>
-                      
+                      < Avatar src={m.photo}/>
+                      <h4>{m.name}</h4>
+                     
                     </CardImg>
                   )
                 })}

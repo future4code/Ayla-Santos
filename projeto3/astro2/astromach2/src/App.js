@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import  Matches from "./Pages/Matches";
 import { BASE_URL } from "./Constants/baseUrl";
 
+
 const App=()=>{
   const [pageName, setPageName]= useState("Home")
   
@@ -48,12 +49,14 @@ const irPaginaMatches =()=>{
   }
 
   return (
-    <div>
+    
+      <div>
       {getPagina()}
-      <h1>Astromatch</h1>
       <button onClick={changePage}>{pageName === "home" ? "Ir para Matches" : "Ir para Home"}</button>
       <button onClick={clearMatches}>Limpar Matches</button>
     </div>
+   
+    
   )
 
 }

@@ -3,15 +3,15 @@ import axios from "axios"
 import { BASE_URL } from "../Constants/baseUrl";
 import{
 PageContainer,
-PageContainerMatches,
 PersonContainer,
 PersonImage,
 PersonName,
 PersonBio,
 ChooseButton,
-
-
 }from "./styled"
+
+
+
 
  const Home = () =>{
     const [mostraPerfil, setMostraPerfil]=useState([])
@@ -54,7 +54,7 @@ useEffect(() => {
 
    return (
           <PageContainer>
-            <PersonContainer>
+              <PersonContainer>
                 <PersonImage src={mostraPerfil.photo} />
                 <PersonName>{mostraPerfil.name}, {mostraPerfil.age}</PersonName>
                 <PersonBio>{mostraPerfil.bio}</PersonBio>
@@ -63,7 +63,9 @@ useEffect(() => {
                 <ChooseButton onClick={()=> personLike (true)}>💚</ChooseButton>
         
                 </div>
-        </PersonContainer>
+            </PersonContainer>
+            
+           
        
           </PageContainer>
          
