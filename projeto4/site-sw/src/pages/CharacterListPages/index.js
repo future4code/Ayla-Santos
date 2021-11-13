@@ -1,51 +1,35 @@
-import React , {useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BASE_URL } from '../../constants/baseUrl' ;
+import {CharacterCard , H1Card , Container , Title}  from "./styled"
+import {getCharacterList} from '../../service/request'
+
 
 const CharacterListPages = (props) => {
-    
-const [characterList, setCharacterList] = useState ([])
+  const [characterList, setCharacterList] = useState([]);
 
-   const getCharacterList =() =>{
-       const URL = `${BASE_URL}/people`
+  useEffect(() => {
+    getCharacterList(setCharacterList);
+  }, []);
+  
+  function personList () {
+    return characterList.map((character,index) => {
+      return < CharacterCard onClick={()=> props.goToDetailsPage(character.url)} 
+        key={index}>
+        {character.name}
+        </CharacterCard>
+  })
 
-       axios.get(URL)
-       .then((res)=>{
-           setCharacterList(res.data.result)
-       })
-       .catch((err)=>{
-           console.log(err)
-       })
-   }
+  }
 
-
-   const characters = setCharacterList.map ((person)=> {
-      return (
-
-          <p> key={person.url}
-              {person.name}
-          </p>
-          
-      )
-   })
-   
-   useEffect (()=>{
-       getCharacterList()
-   },[])
+  return (
+    <Container>
+      <Title> Star Wars</Title>
+      <H1Card>Lista de Personagens </H1Card>
+    {personList()}
+    </Container>
+  )
 
 
+};
 
-
-
-
-    return(
-        <div>
-            <div>{characters}</div>
-            <button onClick={props.onChangeDetail}>Ir para tela de detalhes</button>
-            <h1>Lista de personagen</h1>
-        </div>
-    )
-}
-
-
-export default CharacterListPages 
+export default CharacterListPages;
